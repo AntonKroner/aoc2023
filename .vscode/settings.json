@@ -1,0 +1,34 @@
+{
+	"files.insertFinalNewline": true,
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+		"eslint.autoFixOnSave": true
+	},
+	"eslint.format.enable": true,
+	"eslint.lintTask.enable": true,
+	"javascript.format.enable": false,
+	"typescript.format.enable": false,
+	"files.associations": {
+		"*.tup": "markdown",
+		"*.h": "c",
+	},
+	"C_Cpp.vcpkg.enabled": true,
+	"C_Cpp.intelliSenseEngine": "default",
+	"C_Cpp.errorSquiggles": "enabled",
+	"C_Cpp.formatting": "vcFormat",
+	"C_Cpp.vcFormat.indent.braces": false,
+	"C_Cpp.vcFormat.indent.preserveComments": true,
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda": "sameLine",
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.namespace": "sameLine",
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+	"C_Cpp.vcFormat.space.betweenEmptyBraces": true,
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+	"C_Cpp.vcFormat.space.pointerReferenceAlignment": "left",
+	"C_Cpp.vcFormat.indent.multiLineRelativeTo": "innermostParenthesis"
+}

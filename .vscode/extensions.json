@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"nvidia.nsight-vscode-edition",
+		"ms-vscode.cpptools",
+		"streetsidesoftware.code-spell-checker",
+		"jeff-hykin.better-c-syntax"
+	]
+}
