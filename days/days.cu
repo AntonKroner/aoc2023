@@ -1,4 +1,4 @@
-#include "template.h"
+#include "days.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>

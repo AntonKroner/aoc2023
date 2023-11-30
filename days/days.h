@@ -1,5 +1,5 @@
-#ifndef TEMPLATE_H_
-#define TEMPLATE_H_
+#ifndef days_H_
+#define days_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -8,4 +8,4 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif /* TEMPLATE_H_ */
+#endif /* days_H_ */

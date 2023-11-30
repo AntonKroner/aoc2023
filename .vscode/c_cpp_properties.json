@@ -4,7 +4,7 @@
 			"name": "cuda",
 			"includePath": [
 				"/usr/local/cuda/include",
-				"${workspaceFolder}/**"
+				"${workspaceFolder}/*"
 			],
 			"defines": [],
 			"compilerPath": "/usr/local/cuda/bin/nvcc",

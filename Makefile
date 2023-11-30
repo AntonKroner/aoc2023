@@ -11,13 +11,13 @@ LDFLAGS =
 INCLUDES = 
 LIBRARIES = 
 
-EXECUTABLE = template.exe
-OBJECTS = template.o main.o
+EXECUTABLE = aoc.exe
+OBJECTS = days.o main.o
 
 $(EXECUTABLE): $(OBJECTS)
 	$(NVCC) $(NVINCLUDES) $(NVCCFLAGS) -o $@ $+ $(LIBRARIES)
 
-template.o: template.cu
+days.o: days/days.cu
 	$(NVCC) $(NVINCLUDES) $(NVCCFLAGS) -o $@ -c $<
 
 main.o: main.c
