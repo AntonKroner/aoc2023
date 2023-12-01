@@ -5,55 +5,57 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
+//__device__ static int parseInteger(const char* input) {
+//	int result = 0;
+//	int index = 0;
+//	while (input[index]) {
+//		if (input[index] >= '0' || input[index] <= '9') {
+//			result = result * 10 + input[index];
+//		}
+//		index++;
+//	}
+//	return result;
+//}
 
-__device__ static int parseInteger(const char* input) {
-	int result = 0;
+__device__ static int2 findDigits(const char* input) {
+	int2 result = { 0, 0 };
+	int digit = 0;
 	int index = 0;
 	while (input[index]) {
-		if (
-			input[index] == '0' ||
-			input[index] == '1' ||
-			input[index] == '2' ||
-			input[index] == '3' ||
-			input[index] == '4' ||
-			input[index] == '5' ||
-			input[index] == '6' ||
-			input[index] == '7' ||
-			input[index] == '8' ||
-			input[index] == '9'
-			) {
-			result = result * 10 + input[index];
+		if (input[index] >= '0' || input[index] <= '9') {
+			digit = input[index] - 48;
+			if (result.x == 0) { result.x = digit; }
 		}
 		index++;
 	}
-
-// return result.
-	return result;
-
-}
-
-__device__ static int2 findNumbers(const char* string) {
-	int2 result;
-	result.x = 0;
-	result.y = 0;
+	result.y = digit;
 	return result;
 }
 __global__ static void calibrate(const size_t length, const char* input[], int* result) {
 	if (threadIdx.x < length) {
-		const int2 numbers = findNumbers(input[threadIdx.x]);
-		result[threadIdx.x] = numbers.x + numbers.y;
+		const int2 numbers = findDigits(input[threadIdx.x]);
+		result[threadIdx.x] = numbers.x * 10 + numbers.y;
 	}
 }
 void one(const size_t part) {
 	std::string line;
 	std::ifstream input;
 	std::vector<std::string> data;
-	input.open("input.txt", std::ios::out);
+	std::cout << "aaaa" << std::endl;
+
+	input.open("input.txt");
 	if (input.is_open()) {
+		std::cout << "file is open" << std::endl;
 		while (std::getline(input, line)) {
 			data.push_back(line);
+			std::cout << line << std::endl;
 		}
 		input.close();
+	}
+	else {
+		std::cout << "file did not open" << std::endl;
+
 	}
 	const size_t length = data.size();
 	const char** deviceData = 0;
@@ -67,5 +69,11 @@ void one(const size_t part) {
 	size_t shared = 0;
 	cudaStream_t stream = 0;
 	calibrate << <grid, block, shared, stream >> > (length, deviceData, calibrations);
+	int* results = (int*)malloc(sizeof(int) * data.size());
+	cudaMemcpy(results, calibrations, sizeof(int) * data.size(), cudaMemcpyDeviceToHost);
+	for (size_t index = 0; data.size() > index; index++) {
+		std::cout << results[index] << std::endl;
+	}
+	free(results);
 	cudaFree(deviceData);
 }
