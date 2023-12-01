@@ -42,20 +42,18 @@ void one(const size_t part) {
 	std::string line;
 	std::ifstream input;
 	std::vector<std::string> data;
-	std::cout << "aaaa" << std::endl;
-
-	input.open("input.txt");
+	input.open("./days/one/input.txt");
+	size_t vectorIndex = 0;
 	if (input.is_open()) {
-		std::cout << "file is open" << std::endl;
 		while (std::getline(input, line)) {
 			data.push_back(line);
-			std::cout << line << std::endl;
+			std::cout << data.at(vectorIndex) << std::endl;
+			vectorIndex++;
 		}
 		input.close();
 	}
 	else {
 		std::cout << "file did not open" << std::endl;
-
 	}
 	const size_t length = data.size();
 	const char** deviceData = 0;
@@ -71,9 +69,9 @@ void one(const size_t part) {
 	calibrate << <grid, block, shared, stream >> > (length, deviceData, calibrations);
 	int* results = (int*)malloc(sizeof(int) * data.size());
 	cudaMemcpy(results, calibrations, sizeof(int) * data.size(), cudaMemcpyDeviceToHost);
-	for (size_t index = 0; data.size() > index; index++) {
-		std::cout << results[index] << std::endl;
-	}
+	//for (size_t index = 0; data.size() > index; index++) {
+	//	std::cout << results[index] << std::endl;
+	//}
 	free(results);
 	cudaFree(deviceData);
 }
