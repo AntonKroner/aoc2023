@@ -12,7 +12,7 @@ INCLUDES =
 LIBRARIES = 
 
 EXECUTABLE = aoc.exe
-OBJECTS = days.o main.o
+OBJECTS = main.o days.o one.o
 
 $(EXECUTABLE): $(OBJECTS)
 	$(NVCC) $(NVINCLUDES) $(NVCCFLAGS) -o $@ $+ $(LIBRARIES)
@@ -20,6 +20,9 @@ $(EXECUTABLE): $(OBJECTS)
 days.o: days/days.cu
 	$(NVCC) $(NVINCLUDES) $(NVCCFLAGS) -o $@ -c $<
 
+one.o: days/one/one.cu
+	$(NVCC) $(NVINCLUDES) $(NVCCFLAGS) -o $@ -c $<
+	
 main.o: main.c
 	$(CC) $(INCLUDES) -o $@ -c $<
 
