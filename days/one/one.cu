@@ -37,51 +37,46 @@ __device__ int2 findDigits2(const char* input) {
 		if (input[index] >= '0' && input[index] <= '9') {
 			digit = input[index] - 48;
 			if (result.x == 0) { result.x = digit; }
-			for (size_t i = 0; length > i; i++) {
-				buffer[i] = '0';
-			}
 		}
-		else {
-			for (size_t i = 0; i < (length - 1); i++) {
-				buffer[i] = buffer[i + 1];
-			}
-			buffer[4] = input[index];
-			if (buffer[2] == 'o' && buffer[3] == 'n' && buffer[4] == 'e') {
-				digit = 1;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[2] == 't' && buffer[3] == 'w' && buffer[4] == 'o') {
-				digit = 2;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[0] == 't' && buffer[1] == 'h' && buffer[2] == 'r' && buffer[3] == 'e' && buffer[4] == 'e') {
-				digit = 3;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[1] == 'f' && buffer[2] == 'o' && buffer[3] == 'u' && buffer[4] == 'r') {
-				digit = 4;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[1] == 'f' && buffer[2] == 'i' && buffer[3] == 'v' && buffer[4] == 'e') {
-				digit = 5;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[2] == 's' && buffer[3] == 'i' && buffer[4] == 'x') {
-				digit = 6;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[0] == 's' && buffer[1] == 'e' && buffer[2] == 'v' && buffer[3] == 'e' && buffer[4] == 'n') {
-				digit = 7;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[0] == 'e' && buffer[1] == 'i' && buffer[2] == 'g' && buffer[3] == 'h' && buffer[4] == 't') {
-				digit = 8;
-				if (result.x == 0) { result.x = digit; }
-			}
-			else if (buffer[1] == 'n' && buffer[2] == 'i' && buffer[3] == 'n' && buffer[4] == 'e') {
-				digit = 9;
-				if (result.x == 0) { result.x = digit; }
-			}
+		for (size_t i = 0; i < (length - 1); i++) {
+			buffer[i] = buffer[i + 1];
+		}
+		buffer[4] = input[index];
+		if (buffer[2] == 'o' && buffer[3] == 'n' && buffer[4] == 'e') {
+			digit = 1;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[2] == 't' && buffer[3] == 'w' && buffer[4] == 'o') {
+			digit = 2;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[0] == 't' && buffer[1] == 'h' && buffer[2] == 'r' && buffer[3] == 'e' && buffer[4] == 'e') {
+			digit = 3;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[1] == 'f' && buffer[2] == 'o' && buffer[3] == 'u' && buffer[4] == 'r') {
+			digit = 4;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[1] == 'f' && buffer[2] == 'i' && buffer[3] == 'v' && buffer[4] == 'e') {
+			digit = 5;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[2] == 's' && buffer[3] == 'i' && buffer[4] == 'x') {
+			digit = 6;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[0] == 's' && buffer[1] == 'e' && buffer[2] == 'v' && buffer[3] == 'e' && buffer[4] == 'n') {
+			digit = 7;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[0] == 'e' && buffer[1] == 'i' && buffer[2] == 'g' && buffer[3] == 'h' && buffer[4] == 't') {
+			digit = 8;
+			if (result.x == 0) { result.x = digit; }
+		}
+		else if (buffer[1] == 'n' && buffer[2] == 'i' && buffer[3] == 'n' && buffer[4] == 'e') {
+			digit = 9;
+			if (result.x == 0) { result.x = digit; }
 		}
 		index++;
 	}
