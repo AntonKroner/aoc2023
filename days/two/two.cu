@@ -64,6 +64,53 @@ __global__ static void playGames(const size_t length, const size_t* lengths, con
 	results[threadIdx.x] = game(&input[lengths[threadIdx.x]]);
 //}
 }
+__device__ static int findPower(const char* input) {
+	int red = 0;
+	int green = 0;
+	int blue = 0;
+	int index = 0;
+	int amount = 0;
+	const int game = parseInt(&input[5]);
+	while (input[index] && !(input[index] == ':')) {
+		index++;
+	}
+	index++;
+	while (input[index]) {
+		if (amount) {
+			if (input[index] == 'r') {
+				if (amount > red) {
+					red = amount;
+				}
+				amount = 0;
+				index += 2;
+			}
+			if (input[index] == 'g') {
+				if (amount > green) {
+					green = amount;
+				}
+				amount = 0;
+				index += 4;
+			}
+			if (input[index] == 'b') {
+				if (amount > blue) {
+					blue = amount;
+				}
+				amount = 0;
+				index += 3;
+			}
+		}
+		else {
+			amount = parseInt(&input[index]);
+		}
+		index++;
+	}
+	return red * green * blue;
+}
+__global__ static void findPowers(const size_t length, const size_t* lengths, const char* input, int* results) {
+	//if (threadIdx.x < length) {[]
+	results[threadIdx.x] = findPower(&input[lengths[threadIdx.x]]);
+//}
+}
 // This is a very stupid kernel that only computes the correct result *sometimes*. Pls help it get better!!
 __global__ static void reduce(const size_t length, const int* games, int* results) {
 	results[threadIdx.x] = games[threadIdx.x * 2] + games[threadIdx.x * 2 + 1];
@@ -117,7 +164,7 @@ void two(const size_t part) {
 		std::cout << "part 1" << std::endl;
 	}
 	else {
-		playGames << <grid, block, shared, stream >> > (length, deviceLengths, deviceFlattened, games);
+		findPowers << <grid, block, shared, stream >> > (length, deviceLengths, deviceFlattened, games);
 		std::cout << "part 2" << std::endl;
 	}
 	int* results;
