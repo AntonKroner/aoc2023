@@ -7,7 +7,7 @@
 #include <string>
 #include <stdlib.h>
 
-__device__ int2 findDigits(const char* input) {
+__device__ static int2 findDigits(const char* input) {
 	int2 result = make_int2(0, 0);
 	int digit = 0;
 	int index = 0;
@@ -21,13 +21,13 @@ __device__ int2 findDigits(const char* input) {
 	result.y = digit;
 	return result;
 }
-__global__ void calibrate1(const size_t length, const size_t* lengths, const char* input, int* results) {
+__global__ static void calibrate1(const size_t length, const size_t* lengths, const char* input, int* results) {
 	//if (threadIdx.x < length) {[]
 	const int2 values = findDigits(&input[lengths[threadIdx.x]]);
 	results[threadIdx.x] = values.x * 10 + values.y;
 //}
 }
-__device__ int2 findDigits2(const char* input) {
+__device__ int2 static findDigits2(const char* input) {
 	int2 result = make_int2(0, 0);
 	int digit = 0;
 	int index = 0;
@@ -83,14 +83,14 @@ __device__ int2 findDigits2(const char* input) {
 	result.y = digit;
 	return result;
 }
-__global__ void calibrate2(const size_t length, const size_t* lengths, const char* input, int* results) {
+__global__ static void calibrate2(const size_t length, const size_t* lengths, const char* input, int* results) {
 	//if (threadIdx.x < length) {[]
 	const int2 values = findDigits2(&input[lengths[threadIdx.x]]);
 	results[threadIdx.x] = values.x * 10 + values.y;
 //}
 }
 // This is a very stupid kernel that only computes the correct result *sometimes*. Pls help it get better!!
-__global__ void reduce(const size_t length, const int* calibrations, int* results) {
+__global__ static void reduce(const size_t length, const int* calibrations, int* results) {
 	results[threadIdx.x] = calibrations[threadIdx.x * 2] + calibrations[threadIdx.x * 2 + 1];
 	__syncthreads();
 	size_t previous = length;
