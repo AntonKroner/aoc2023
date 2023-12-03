@@ -87,7 +87,9 @@
 		"__hash_table": "cpp",
 		"__split_buffer": "cpp",
 		"queue": "cpp",
-		"stack": "cpp"
+		"stack": "cpp",
+		"__locale": "cpp",
+		"__string": "cpp"
 	},
 	"C_Cpp.vcpkg.enabled": true,
 	"C_Cpp.intelliSenseEngine": "default",
@@ -102,5 +104,19 @@
 	"C_Cpp.vcFormat.space.betweenEmptyBraces": true,
 	"C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
 	"C_Cpp.vcFormat.space.pointerReferenceAlignment": "left",
-	"C_Cpp.vcFormat.indent.multiLineRelativeTo": "innermostParenthesis"
+	"C_Cpp.vcFormat.indent.multiLineRelativeTo": "innermostParenthesis",
+	"cSpell.checkOnlyEnabledFileTypes": false,
+	"cSpell.words": [
+		"cout",
+		"cuda",
+		"endl",
+		"fstream",
+		"getline",
+		"ifstream",
+		"iostream",
+		"Malloc",
+		"Memcpy",
+		"stdlib",
+		"syncthreads"
+	]
 }
