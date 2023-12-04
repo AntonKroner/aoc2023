@@ -57,6 +57,69 @@ __global__ static void sumRows(const ulong2 dimensions, const char* rows, int* r
 	results[threadIdx.x] = sumRow(dimensions.x, &rows[dimensions.x * threadIdx.x]);
 //}
 }
+__device__ static inline bool isNumber(const char character) {
+	return character >= '0' && character <= '9';
+}
+__device__ static int sumRowRatio(const size_t length, const char* rows) {
+	int result = 0;
+	for (size_t index = 1; (length - 1) > index; index++) {
+		if (rows[length + index] == '*') {
+			int ratio = 1;
+			size_t found = 0;
+			if (isNumber(rows[length + index + 1])) {
+				found++;
+				ratio = ratio * parseInt(&rows[length + index + 1]);
+			}
+			if (isNumber(rows[length + index - 1])) {
+				found++;
+				int numberStartIndex = length + index - 1;
+				while (isNumber(rows[numberStartIndex - 1])) {
+					numberStartIndex--;
+				}
+				ratio = ratio * parseInt(&rows[numberStartIndex]);
+			}
+			if (isNumber(rows[index - 1])) {
+				found++;
+				int numberStartIndex = index - 1;
+				while (isNumber(rows[numberStartIndex - 1])) {
+					numberStartIndex--;
+				}
+				ratio = ratio * parseInt(&rows[numberStartIndex]);
+			}
+			if (isNumber(rows[index]) && !isNumber(rows[index - 1])) {
+				found++;
+				ratio = ratio * parseInt(&rows[index]);
+			}
+			if (isNumber(rows[index + 1]) && !isNumber(rows[index])) {
+				found++;
+				ratio = ratio * parseInt(&rows[index + 1]);
+			}
+			if (isNumber(rows[2 * length + index - 1])) {
+				found++;
+				int numberStartIndex = 2 * length + index - 1;
+				while (isNumber(rows[numberStartIndex - 1])) {
+					numberStartIndex--;
+				}
+				ratio = ratio * parseInt(&rows[numberStartIndex]);
+			}
+			if (isNumber(rows[2 * length + index]) && !isNumber(rows[2 * length + index - 1])) {
+				found++;
+				ratio = ratio * parseInt(&rows[2 * length + index]);
+			}
+			if (isNumber(rows[2 * length + index + 1]) && !isNumber(rows[2 * length + index])) {
+				found++;
+				ratio = ratio * parseInt(&rows[2 * length + index + 1]);
+			}
+			result = found == 2 ? result + ratio : result;
+		}
+	}
+	return result;
+}
+__global__ static void findGears(const ulong2 dimensions, const char* rows, int* results) {
+	//if (threadIdx.x < length) {[]
+	results[threadIdx.x] = sumRowRatio(dimensions.x, &rows[dimensions.x * threadIdx.x]);
+//}
+}
 // This is a very stupid kernel that only computes the correct result *sometimes*. Pls help it get better!!
 __global__ static void reduce(const size_t length, const int* games, int* results) {
 	results[threadIdx.x] = games[threadIdx.x * 2] + games[threadIdx.x * 2 + 1];
@@ -110,7 +173,7 @@ void three(const size_t part) {
 		std::cout << "part 1" << std::endl;
 	}
 	else {
-		sumRows << <grid, block, shared, stream >> > (dimensions, deviceSchematic, rowTotals);
+		findGears << <grid, block, shared, stream >> > (dimensions, deviceSchematic, rowTotals);
 		std::cout << "part 2" << std::endl;
 	}
 	int* results;
