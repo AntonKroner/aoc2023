@@ -89,7 +89,13 @@
 		"queue": "cpp",
 		"stack": "cpp",
 		"__locale": "cpp",
-		"__string": "cpp"
+		"__string": "cpp",
+		"__availability": "cpp",
+		"__config": "cpp",
+		"__verbose_abort": "cpp",
+		"locale": "cpp",
+		"version": "cpp",
+		"__preprocessor": "cpp"
 	},
 	"C_Cpp.vcpkg.enabled": true,
 	"C_Cpp.intelliSenseEngine": "default",
