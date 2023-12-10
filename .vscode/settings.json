@@ -14,8 +14,8 @@
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true,
-		"eslint.autoFixOnSave": true
+		"source.fixAll.eslint": "explicit",
+		"eslint.autoFixOnSave": "explicit"
 	},
 	"eslint.format.enable": true,
 	"eslint.lintTask.enable": true,
@@ -95,7 +95,12 @@
 		"__verbose_abort": "cpp",
 		"locale": "cpp",
 		"version": "cpp",
-		"__preprocessor": "cpp"
+		"__preprocessor": "cpp",
+		"strstream": "cpp",
+		"charconv": "cpp",
+		"span": "cpp",
+		"variant": "cpp",
+		"format": "cpp"
 	},
 	"C_Cpp.vcpkg.enabled": true,
 	"C_Cpp.intelliSenseEngine": "default",

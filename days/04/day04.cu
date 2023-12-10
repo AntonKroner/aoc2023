@@ -29,8 +29,7 @@ __device__ static int findRowMatches(const char* row) {
 	size_t w = 0;
 	while (row[i] && row[i] != '|') {
 		if (isNumber(row[i])) {
-			winners[w] = parseInt(&row[i]);
-			w++;
+			winners[w++] = parseInt(&row[i]);
 			while (row[i] && isNumber(row[i])) {
 				i++;
 			}
@@ -42,8 +41,7 @@ __device__ static int findRowMatches(const char* row) {
 	size_t n = 0;
 	while (row[i] && numbersLength > n) {
 		if (isNumber(row[i])) {
-			numbers[n] = parseInt(&row[i]);
-			n++;
+			numbers[n++] = parseInt(&row[i]);
 			while (row[i] && isNumber(row[i])) {
 				i++;
 			}
@@ -60,12 +58,26 @@ __device__ static int findRowMatches(const char* row) {
 	}
 	return matches ? 1 << (matches - 1) : 0;
 }
-//4294967297
 __global__ static void matchCards(const size_t length, const size_t* lengths, const char* input, size_t* results) {
 	//if (threadIdx.x < length) {[]
-	results[threadIdx.x] = findRowMatches(&input[lengths[threadIdx.x]]);
+	const size_t result = findRowMatches(&input[lengths[threadIdx.x]]);
+	results[threadIdx.x] = result ? 1 << (result - 1) : 0;
 //}
 }
+
+//__global__ static void matchCards2(const size_t length, const size_t* lengths, const char* input, size_t* results) {
+//	//if (threadIdx.x < length) {[]
+//	size_t additional = results[threadIdx.x] = findRowMatches(&input[lengths[threadIdx.x]]);
+//	__syncthreads();
+//	for (size_t i = threadIdx.x; (threadIdx.x + results[threadIdx.x]) > i && length > i; i++) {
+//		size_t matches = results[i];
+//		while (matches) {
+//			additional += matches;
+//			matches--;
+//		}
+//	}
+////}
+//}
 // This is a very stupid kernel that only computes the correct result *sometimes*. Pls help it get better!!
 __global__ static void reduce(const size_t length, const size_t* input, size_t* results) {
 	size_t previous = length;
@@ -84,7 +96,7 @@ __global__ static void reduce(const size_t length, const size_t* input, size_t* 
 	}
 	__syncthreads();
 }
-void day4(const size_t part) {
+void day04(const size_t part) {
 	std::string line;
 	std::ifstream input;
 	std::vector<std::string> lines;
