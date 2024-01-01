@@ -5,7 +5,7 @@ NVLDFLAGS = -dlink
 NVINCLUDES = -I"$(CUDA_PATH)/include"
 
 CC = gcc-13 -Wall -Wpedantic
-CCFLAGS = --std=c2x# -O3
+CCFLAGS = --std=gnu2x# -O3
 LDFLAGS = 
 INCLUDES = 
 LIBRARIES = -L"$(CUDA_PATH)/lib64" -lcudadevrt -lcudart -lstdc++

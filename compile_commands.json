@@ -1,0 +1,131 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc-13",
+      "-Wall",
+      "-Wpedantic",
+      "--std=gnu2x",
+      "-c",
+      "-o",
+      "main.o",
+      "main.c"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/main.c",
+    "output": "/home/claire/versioned/other/aoc2023/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/local/cuda/bin/nvcc",
+      "-c",
+      "-ccbin",
+      "g++",
+      "--threads",
+      "0",
+      "--std=c++20",
+      "-I/usr/local/cuda/include",
+      "-dc",
+      "-o",
+      "one.o",
+      "days/one/one.cu"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/days/one/one.cu",
+    "output": "/home/claire/versioned/other/aoc2023/one.o"
+  },
+  {
+    "arguments": [
+      "/usr/local/cuda/bin/nvcc",
+      "-c",
+      "-ccbin",
+      "g++",
+      "--threads",
+      "0",
+      "--std=c++20",
+      "-I/usr/local/cuda/include",
+      "-dc",
+      "-o",
+      "two.o",
+      "days/two/two.cu"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/days/two/two.cu",
+    "output": "/home/claire/versioned/other/aoc2023/two.o"
+  },
+  {
+    "arguments": [
+      "/usr/local/cuda/bin/nvcc",
+      "-c",
+      "-ccbin",
+      "g++",
+      "--threads",
+      "0",
+      "--std=c++20",
+      "-I/usr/local/cuda/include",
+      "-dc",
+      "-o",
+      "three.o",
+      "days/three/three.cu"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/days/three/three.cu",
+    "output": "/home/claire/versioned/other/aoc2023/three.o"
+  },
+  {
+    "arguments": [
+      "/usr/local/cuda/bin/nvcc",
+      "-c",
+      "-ccbin",
+      "g++",
+      "--threads",
+      "0",
+      "--std=c++20",
+      "-I/usr/local/cuda/include",
+      "-dc",
+      "-o",
+      "day04.o",
+      "days/04/day04.cu"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/days/04/day04.cu",
+    "output": "/home/claire/versioned/other/aoc2023/day04.o"
+  },
+  {
+    "arguments": [
+      "/usr/local/cuda/bin/nvcc",
+      "-c",
+      "-ccbin",
+      "g++",
+      "--threads",
+      "0",
+      "--std=c++20",
+      "-I/usr/local/cuda/include",
+      "-dc",
+      "-o",
+      "day05.o",
+      "days/05/day05.cu"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/days/05/day05.cu",
+    "output": "/home/claire/versioned/other/aoc2023/day05.o"
+  },
+  {
+    "arguments": [
+      "/usr/local/cuda/bin/nvcc",
+      "-c",
+      "-ccbin",
+      "g++",
+      "--threads",
+      "0",
+      "--std=c++20",
+      "-I/usr/local/cuda/include",
+      "-dc",
+      "-o",
+      "days.o",
+      "days/days.cu"
+    ],
+    "directory": "/home/claire/versioned/other/aoc2023",
+    "file": "/home/claire/versioned/other/aoc2023/days/days.cu",
+    "output": "/home/claire/versioned/other/aoc2023/days.o"
+  }
+]

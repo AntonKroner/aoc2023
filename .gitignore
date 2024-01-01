@@ -1,3 +1,5 @@
+#clangd
+.cache
 #vcpkg
 vcpkg
 vcpkg_installed
